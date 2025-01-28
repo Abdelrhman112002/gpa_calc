@@ -56,14 +56,41 @@ function setupEventListeners() {
 
 // Enhanced input validation functions
 function validateGradeInput(input) {
-    let value = input.value.replace(/[^0-9.]/g, '');
-    value = parseFloat(value);
-    if (isNaN(value)) value = '';
-    if (value > 4) {
-        value = 4;
-        showAlert('Maximum grade is 4.0');
+    // Allow typing decimal point and numbers
+    let value = input.value;
+    
+    // Only proceed with validation if the input isn't just a decimal point
+    if (value !== '.') {
+        // Remove any non-numeric characters except decimal point
+        value = value.replace(/[^\d.]/g, '');
+        
+        // Ensure only one decimal point
+        const decimalCount = (value.match(/\./g) || []).length;
+        if (decimalCount > 1) {
+            value = value.substring(0, value.lastIndexOf('.'));
+        }
+        
+        // Convert to number and validate range only if we have a valid number
+        const numValue = parseFloat(value);
+        if (!isNaN(numValue)) {
+            if (numValue > 4) {
+                value = '4';
+                showAlert('Maximum grade is 4.0');
+            }
+            if (numValue < 0) {
+                value = '0';
+            }
+            
+            // Only format if it's not currently being typed
+            if (value.indexOf('.') !== value.length - 1) {
+                // Format to 2 decimal places if it's a decimal number
+                if (!Number.isInteger(numValue)) {
+                    value = Math.round(numValue * 100) / 100;
+                }
+            }
+        }
     }
-    if (value < 0) value = 0;
+    
     input.value = value;
 }
 
@@ -81,12 +108,12 @@ function addNewRow() {
     row.className = 'input-row animate__animated animate__fadeInDown';
     
     const gradeInput = document.createElement('input');
-    gradeInput.type = 'number';
-    gradeInput.step = '0.01';
-    gradeInput.min = '0';
-    gradeInput.max = '4';
+    gradeInput.type = 'text';  // Keep as text type
+    gradeInput.inputMode = 'decimal';
     gradeInput.placeholder = 'Grade (0-4)';
     gradeInput.className = 'grade';
+    gradeInput.autocomplete = 'off';
+    // Remove pattern attribute to allow easier decimal input
     
     const hoursInput = document.createElement('input');
     hoursInput.type = 'number';
