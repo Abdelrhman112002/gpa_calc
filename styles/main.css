@@ -1,0 +1,484 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Add theme variables */
+:root[data-theme="light"] {
+    --bg-color: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #2d3748;
+    --primary-color: #1362b0;
+    --border-color: #e1e1e1;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --input-bg: rgba(255, 255, 255, 0.9);
+    --result-bg: rgba(248, 249, 250, 0.9);
+    --btn-gradient: linear-gradient(135deg, #1362b0 0%, #0b5fb0 100%);
+    --delete-btn-gradient: linear-gradient(135deg, #dc3545 0%, #961722 100%);
+    --success-btn-gradient: linear-gradient(135deg, #28a745 0%, #218838 100%);
+}
+
+:root[data-theme="dark"] {
+    --bg-color: linear-gradient(135deg, #111827 0%, #000000 100%);
+    --card-bg: rgba(26, 31, 46, 0.95);
+    --text-color: #e2e8f0;
+    --primary-color: #60a5fa;
+    --border-color: #2d3748;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --input-bg: rgba(45, 55, 72, 0.9);
+    --result-bg: rgba(45, 55, 72, 0.9);
+    --btn-gradient: linear-gradient(135deg, #3182ce 0%, #2c5282 100%);
+    --delete-btn-gradient: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    --success-btn-gradient: linear-gradient(135deg, #2ea043 0%, #238636 100%);
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+.container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    width: 90%;
+    max-width: 600px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    font-size: 2.2rem;
+    font-weight: 600;
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+    filter: drop-shadow(0 2px 4px var(--shadow-color));
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.headers {
+    display: grid;
+    grid-template-columns: 1fr 1fr 40px;
+    gap: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 0.8rem auto;
+    padding: 0;
+}
+
+.headers span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+}
+
+.headers span:nth-child(1) {
+    margin-right: 10px;
+}
+
+.headers span:nth-child(2) {
+    margin-right: 10px;
+}
+
+.headers span:last-child {
+    width: 40px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 40px;
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto 0.5rem auto;
+    padding: 0;
+    align-items: center;
+    animation: fadeIn 0.5s ease;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.input-container label {
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .input-container {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    backdrop-filter: blur(5px);
+    height: 42px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+    outline: none;
+    transform: translateY(-1px);
+}
+
+input::placeholder {
+    text-align: center;
+}
+
+button, .add-row-btn, .new-calc-btn {
+    display: block;
+    margin: 1rem auto;
+    width: auto;
+    text-align: center;
+}
+
+button {
+    background: var(--btn-gradient);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 500;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.add-row-btn {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+}
+
+.add-row-btn:hover {
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+}
+
+.delete-btn {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    padding: 0;
+    background: var(--delete-btn-gradient);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+.delete-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.delete-btn:active {
+    transform: scale(0.95);
+}
+
+.results {
+    text-align: center;
+    margin-top: 1rem;
+    padding: 1.2rem;
+    border-radius: 12px;
+    background-color: var(--result-bg);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    width: 100%;
+}
+
+.results.show {
+    display: block;
+    opacity: 1;
+}
+
+.results p {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    animation: fadeIn 0.5s ease;
+}
+
+.credits {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.2rem;
+    border-top: 2px solid var(--border-color);
+    width: 100%;
+}
+
+.credits p {
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.author-logo {
+    height: 25px;
+    width: auto;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px var(--shadow-color));
+}
+
+.author-logo:hover {
+    transform: scale(1.15);
+}
+
+.logo-container span {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.logo-container span i {
+    font-size: 0.8rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .logo {
+        height: 35px;
+    }
+
+    input {
+        padding: 0.6rem;
+    }
+
+    button {
+        width: 180px;
+        padding: 0.8rem;
+    }
+}
+
+/* Add theme toggle button styles */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--card-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    color: var(--text-color);
+    overflow: hidden;
+    padding: 0;
+}
+
+.theme-toggle span {
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.light-icon {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.dark-icon {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+[data-theme="dark"] .light-icon {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+[data-theme="dark"] .dark-icon {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.light-icon::after {
+    font-size: 1.2rem;
+}
+
+.dark-icon::after {
+    font-size: 1.2rem;
+}
+
+/* Update input styles for dark theme */
+input {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
+
+input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+/* Update results background for dark theme */
+.results {
+    background-color: var(--result-bg);
+}
+
+/* Update delete button colors for dark theme */
+[data-theme="dark"] .delete-btn {
+    background: linear-gradient(135deg, #dc3545 0%, #961722 100%);
+}
+
+/* Update credits section for dark theme */
+[data-theme="dark"] .credits {
+    border-top-color: var(--border-color);
+}
+
+[data-theme="dark"] .credits p {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .logo-container span {
+    color: #a0aec0;
+}
+
+.new-calc-btn {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 1rem auto 0;
+    width: auto;
+    min-width: 180px;
+    font-weight: 500;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.2);
+    transition: all 0.3s ease;
+}
+
+.new-calc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.3);
+}
+
+[data-theme="dark"] .new-calc-btn {
+    background: linear-gradient(135deg, #2ea043 0%, #238636 100%);
+    box-shadow: 0 4px 15px rgba(46, 160, 67, 0.2);
+}
+
+[data-theme="dark"] .new-calc-btn:hover {
+    box-shadow: 0 6px 20px rgba(46, 160, 67, 0.3);
+}
