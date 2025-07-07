@@ -191,13 +191,20 @@ function calculateGPA() {
     const resultsDiv = document.querySelector('.results');
     
     for (let i = 0; i < gradeInputs.length; i++) {
-        const grade = parseFloat(gradeInputs[i].value || 0);
-        const hours = parseInt(hoursInputs[i].value || 0);
+        const gradeValue = gradeInputs[i].value.trim();
+        const hoursValue = hoursInputs[i].value.trim();
         
-        if (grade && hours) {
-            hasValidInput = true;
-            totalPoints += grade * hours;
-            totalHours += hours;
+        // Check if both fields have actual input
+        if (gradeValue !== '' && hoursValue !== '') {
+            const grade = parseFloat(gradeValue);
+            const hours = parseInt(hoursValue);
+            
+            // Include in calculation if grade is valid (including 0) and hours > 0
+            if (!isNaN(grade) && grade >= 0 && hours > 0) {
+                hasValidInput = true;
+                totalPoints += grade * hours;
+                totalHours += hours;
+            }
         }
     }
     
