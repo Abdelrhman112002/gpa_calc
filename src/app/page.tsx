@@ -500,13 +500,13 @@ export default function GPACalculator() {
             <div className="w-20 h-20 mx-auto mb-6 bg-btn-gradient rounded-full flex items-center justify-center">
               <i className="fas fa-graduation-cap text-[2.2rem] text-white"></i>
             </div>
-            <h2 className="text-white text-2xl font-bold mb-6">Your GPA Result</h2>
+            <h2 className="text-text-color text-2xl font-bold mb-6">Your GPA Result</h2>
             <div className="bg-result-bg rounded-xl p-6 mb-6 border border-black/10 dark:border-white/10">
-              <p className={`text-[1.8rem] font-bold mb-2 text-[#4fd1c5]`}>
+              <p className={`text-[1.8rem] font-bold mb-2 dark:text-[#4fd1c5] text-primary`}>
                 Total GPA = {gpaResult.value.toFixed(2)}
               </p>
               <p className="text-lg font-medium text-text-muted m-0">
-                <span className="text-[#4fd1c5]">Grade: {gpaResult.letter}</span> | <span className="text-primary font-semibold">Total Hours: {gpaResult.hours}</span>
+                <span className="dark:text-[#4fd1c5] text-primary font-bold">Grade: {gpaResult.letter}</span> | <span className="text-primary font-semibold">Total Hours: {gpaResult.hours}</span>
               </p>
             </div>
             <button 
@@ -524,10 +524,10 @@ export default function GPACalculator() {
         {notifications.map((notification) => (
           <div 
             key={notification.id} 
-            className={`bg-notification-bg p-4 pr-5 rounded-xl flex items-center gap-3 shadow-notification max-w-[350px] border-l-4 border-black/10 dark:border-white/10 backdrop-blur-md animate-slideIn ${
-              notification.type === 'success' ? 'border-valid-color' :
-              notification.type === 'error' ? 'border-invalid-color' :
-              'border-warning-color'
+            className={`bg-notification-bg p-4 pr-5 rounded-xl flex items-center gap-3 shadow-notification max-w-[350px] border border-y-black/10 border-r-black/10 dark:border-y-white/10 dark:border-r-white/10 border-l-[5px] backdrop-blur-md animate-slideIn ${
+              notification.type === 'success' ? 'border-l-valid-color' :
+              notification.type === 'error' ? 'border-l-invalid-color' :
+              'border-l-warning-color'
             }`}
           >
             <i className={`fas ${

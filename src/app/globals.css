@@ -18,6 +18,7 @@
     --success-btn-gradient: linear-gradient(135deg, #28a745 0%, #218838 100%);
     --valid-color: #28a745;
     --invalid-color: #dc3545;
+    --warning-color: #ffc107;
     --grade-excellent: #28a745;
     --grade-good: #17a2b8;
     --grade-average: #ffc107;
@@ -42,6 +43,7 @@
     --success-btn-gradient: linear-gradient(135deg, #2ea043 0%, #238636 100%);
     --valid-color: #48bb78;
     --invalid-color: #fc8181;
+    --warning-color: #f6e05e;
     --grade-excellent: #48bb78;
     --grade-good: #4fd1c5;
     --grade-average: #ecc94b;

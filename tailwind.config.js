@@ -23,6 +23,7 @@ module.exports = {
         'grade-danger': 'var(--grade-danger)',
         'valid-color': 'var(--valid-color)',
         'invalid-color': 'var(--invalid-color)',
+        'warning-color': 'var(--warning-color)',
         'notification-bg': 'var(--notification-bg)',
       },
       backgroundImage: {
