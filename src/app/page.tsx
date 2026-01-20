@@ -328,10 +328,10 @@ export default function GPACalculator() {
         onClick={toggleTheme}
         aria-label="Toggle theme"
       >
-        <span className={`absolute transition-all duration-500 ${theme === 'dark' ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+        <span className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${theme === 'dark' ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
           <i className="fas fa-sun text-white text-xl"></i>
         </span>
-        <span className={`absolute transition-all duration-500 ${theme === 'light' ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+        <span className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${theme === 'light' ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
           <i className="fas fa-moon text-navy text-xl"></i>
         </span>
       </button>
