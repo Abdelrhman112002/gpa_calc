@@ -524,7 +524,7 @@ export default function GPACalculator() {
         {notifications.map((notification) => (
           <div 
             key={notification.id} 
-            className={`bg-notification-bg p-4 pr-5 rounded-xl flex items-center gap-3 shadow-[0_6px_25px_var(--notification-shadow)] max-w-[350px] border-l-4 backdrop-blur-md animate-slideIn ${
+            className={`bg-notification-bg p-4 pr-5 rounded-xl flex items-center gap-3 shadow-notification max-w-[350px] border-l-4 border-black/10 dark:border-white/10 backdrop-blur-md animate-slideIn ${
               notification.type === 'success' ? 'border-valid-color' :
               notification.type === 'error' ? 'border-invalid-color' :
               'border-warning-color'

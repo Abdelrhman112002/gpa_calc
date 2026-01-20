@@ -23,6 +23,7 @@ module.exports = {
         'grade-danger': 'var(--grade-danger)',
         'valid-color': 'var(--valid-color)',
         'invalid-color': 'var(--invalid-color)',
+        'notification-bg': 'var(--notification-bg)',
       },
       backgroundImage: {
         'btn-gradient': 'var(--btn-gradient)',
@@ -34,6 +35,9 @@ module.exports = {
         shake: 'shake 0.4s ease-in-out',
         fadeIn: 'fadeIn 0.5s ease-out',
         modalSlideIn: 'modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)',
+      },
+      boxShadow: {
+        'notification': '0 6px 25px var(--notification-shadow)',
       },
       keyframes: {
         shake: {

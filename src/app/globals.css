@@ -23,6 +23,8 @@
     --grade-average: #ffc107;
     --grade-warning: #fd7e14;
     --grade-danger: #dc3545;
+    --notification-bg: rgba(255, 255, 255, 0.98);
+    --notification-shadow: rgba(0, 0, 0, 0.15);
   }
 
   :root[data-theme="dark"] {
@@ -45,6 +47,8 @@
     --grade-average: #ecc94b;
     --grade-warning: #ed8936;
     --grade-danger: #fc8181;
+    --notification-bg: rgba(55, 65, 81, 0.98);
+    --notification-shadow: rgba(0, 0, 0, 0.6);
   }
 
   body {
