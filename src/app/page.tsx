@@ -48,8 +48,7 @@ export default function GPACalculator() {
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(prefersDark ? 'dark' : 'light');
+      setTheme('dark');
     }
     
     // Create initial rows
@@ -338,8 +337,8 @@ export default function GPACalculator() {
       </button>
 
       {/* Main Container */}
-      <div className="bg-card-bg p-8 rounded-[24px] shadow-[0_10px_30px_var(--shadow-color)] w-[95%] max-w-[600px] h-[800px] max-h-[93vh] backdrop-blur-[10px] border border-black/10 dark:border-white/10 flex flex-col items-center relative overflow-hidden">
-        <h1 className="text-primary text-center mb-6 flex items-center justify-center gap-[15px] text-[2.2rem] font-semibold">
+      <div className="bg-card-bg p-5 sm:p-8 rounded-[24px] shadow-[0_10px_30px_var(--shadow-color)] w-[95%] max-w-[600px] h-[800px] max-h-[93vh] backdrop-blur-[10px] border border-black/10 dark:border-white/10 flex flex-col items-center relative overflow-hidden">
+        <h1 className="text-primary text-center mb-5 sm:mb-6 flex items-center justify-center gap-2 sm:gap-[15px] text-2xl sm:text-[2.2rem] font-semibold">
           <Image 
             src="/gpa.png" 
             alt="GPA Calculator Logo" 
@@ -354,32 +353,32 @@ export default function GPACalculator() {
           <div className="w-full flex-1 overflow-y-auto pr-2 custom-scrollbar" ref={scrollContainerRef}>
             {/* Previous Semester Section */}
             <div className="w-full p-4 bg-gray-500/10 rounded-xl mb-4 border border-black/10 dark:border-white/10 backdrop-blur-[5px]">
-              <p className="bg-success-btn-gradient bg-clip-text text-transparent font-bold text-[1.2rem] mb-[0.7rem] text-center title-case tracking-[0.5px] w-fit mx-auto">
+              <p className="bg-success-btn-gradient bg-clip-text text-transparent font-bold text-xl sm:text-[1.2rem] mb-[0.7rem] text-center title-case tracking-[0.5px] w-fit mx-auto">
                 Previous Semesters (Optional)
               </p>
               <div className="flex gap-4 justify-center">
                 <div className="flex-1 flex flex-col items-center gap-2">
-                  <label htmlFor="prevGpa" className="text-primary text-md font-semibold">Total GPA</label>
+                  <label htmlFor="prevGpa" className="text-primary text-sm sm:text-base font-semibold">Total GPA</label>
                   <input
                     type="text"
                     id="prevGpa"
                     inputMode="decimal"
                     placeholder="e.g. 3.5"
-                    className={`w-full p-[0.7rem] border rounded-xl text-center text-[0.95rem] bg-input-bg text-text-color h-[42px] focus:primary focus:ring-4 focus:ring-primary/20 outline-none transition-all ${getInputClass(prevGpaValid)}`}
+                    className={`w-full p-2.5 sm:p-[0.8rem] border rounded-xl text-center text-[0.95rem] bg-input-bg text-text-color h-[42px] focus:primary focus:ring-4 focus:ring-primary/20 outline-none transition-all ${getInputClass(prevGpaValid)}`}
                     value={prevGpa}
                     onChange={(e) => handlePrevGpaChange(e.target.value)}
                     autoComplete="off"
                   />
                 </div>
                 <div className="flex-1 flex flex-col items-center gap-2">
-                  <label htmlFor="prevHours" className="text-primary text-md font-semibold">Total Hours</label>
+                  <label htmlFor="prevHours" className="text-primary text-sm sm:text-base font-semibold">Total Hours</label>
                   <input
                     type="number"
                     id="prevHours"
                     min="0"
                     step="1"
                     placeholder="e.g. 60"
-                    className={`w-full p-[0.7rem] border rounded-xl text-center text-[0.95rem] bg-input-bg text-text-color h-[42px] focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all ${getInputClass(prevHoursValid)}`}
+                    className={`w-full p-2.5 sm:p-[0.7rem] border rounded-xl text-center text-[0.95rem] bg-input-bg text-text-color h-[42px] focus:primary focus:ring-4 focus:ring-primary/20 outline-none transition-all ${getInputClass(prevHoursValid)}`}
                     value={prevHours}
                     onChange={(e) => handlePrevHoursChange(e.target.value)}
                     onKeyDown={(e) => {
@@ -395,10 +394,10 @@ export default function GPACalculator() {
 
             {/* Current Semester Section */}
             <div className="w-full p-4 bg-gray-500/10 rounded-xl mb-4 border border-black/10 dark:border-white/10 backdrop-blur-[5px]">
-              <p className="bg-success-btn-gradient bg-clip-text text-transparent font-bold text-[1.2rem] mb-[0.7rem] text-center title-case tracking-[0.5px] w-fit mx-auto">
+              <p className="bg-success-btn-gradient bg-clip-text text-transparent font-bold text-xl sm:text-[1.2rem] mb-[0.7rem] text-center title-case tracking-[0.5px] w-fit mx-auto">
                 Current Semester
               </p>
-              <div className="grid grid-cols-[1fr_1fr_40px] gap-4 text-primary font-semibold text-md text-center w-full mb-3">
+              <div className="grid grid-cols-[1fr_1fr_40px] gap-2 sm:gap-4 text-primary font-semibold text-sm sm:text-base text-center w-full mb-3">
                 <span className="flex justify-center items-center h-6">Subject Grade</span>
                 <span className="flex justify-center items-center h-6">Hours</span>
                 <span className="w-10"></span>
@@ -411,7 +410,7 @@ export default function GPACalculator() {
                       type="text"
                       inputMode="decimal"
                       placeholder="Grade (0-4)"
-                      className={`w-full p-[0.8rem] border rounded-xl text-center text-base bg-input-bg text-text-color backdrop-blur-[5px] h-[42px] focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all focus:-translate-y-[1px] ${getInputClass(row.gradeValid)}`}
+                      className={`w-full p-2.5 sm:p-[0.8rem] border rounded-xl text-center text-base bg-input-bg text-text-color backdrop-blur-[5px] h-[42px] focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all focus:-translate-y-[1px] ${getInputClass(row.gradeValid)}`}
                       value={row.grade}
                       onChange={(e) => updateRow(row.id, 'grade', e.target.value)}
                       autoComplete="off"
@@ -420,7 +419,7 @@ export default function GPACalculator() {
                     <input
                       type="number"
                       placeholder="Credit Hours"
-                      className={`w-full p-[0.8rem] border rounded-xl text-center text-base bg-input-bg text-text-color backdrop-blur-[5px] h-[42px] focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all focus:-translate-y-[1px] ${getInputClass(row.hoursValid)}`}
+                      className={`w-full p-2.5 sm:p-[0.8rem] border rounded-xl text-center text-base bg-input-bg text-text-color backdrop-blur-[5px] h-[42px] focus:border-primary focus:ring-4 focus:ring-primary/20 outline-none transition-all focus:-translate-y-[1px] ${getInputClass(row.hoursValid)}`}
                       min="0"
                       step="1"
                       value={row.hours}
@@ -447,15 +446,15 @@ export default function GPACalculator() {
             </div>
 
           {/* Buttons */}
-          <div className="flex gap-4 justify-center items-center w-full my-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full my-4">
             <button 
-              className="flex-1 flex items-center justify-center gap-2 px-8 py-4 bg-success-btn-gradient text-white border-none rounded-xl cursor-pointer text-lg font-medium hover:-translate-y-[1px] active:translate-y-0 transition-all" 
+              className="w-full sm:flex-1 flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-success-btn-gradient text-white border-none rounded-xl cursor-pointer text-base sm:text-lg font-medium hover:-translate-y-[1px] active:translate-y-0 transition-all" 
               onClick={addRow}
             >
-              <i className="fas fa-plus text-sm"></i> Add Subject
+              <i className="fas fa-plus text-xs"></i> Add Subject
             </button>
             <button 
-              className="flex-1 flex items-center justify-center gap-2 px-8 py-4 bg-btn-gradient text-white border-none rounded-xl cursor-pointer text-lg font-medium hover:-translate-y-[1px] active:translate-y-0 transition-all"
+              className="w-full sm:flex-1 flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-btn-gradient text-white border-none rounded-xl cursor-pointer text-base sm:text-lg font-medium hover:-translate-y-[1px] active:translate-y-0 transition-all"
               onClick={calculateGPA}
             >
               Calculate GPA
@@ -489,7 +488,7 @@ export default function GPACalculator() {
             if (e.target === e.currentTarget) setShowModal(false);
           }}
         >
-          <div className="bg-card-bg rounded-[24px] p-10 w-[90%] max-w-[420px] text-center relative shadow-[0_25px_60px_rgba(0,0,0,0.3)] border border-black/10 dark:border-white/10 animate-modalSlideIn">
+          <div className="bg-card-bg rounded-[24px] p-6 sm:p-10 w-[95%] max-w-[420px] text-center relative shadow-[0_25px_60px_rgba(0,0,0,0.3)] border border-black/10 dark:border-white/10 animate-modalSlideIn">
             <button 
               className="absolute top-[15px] right-[15px] w-9 h-9 min-w-[36px] bg-input-bg border border-border-color rounded-full cursor-pointer flex items-center justify-center text-text-muted hover:bg-delete-btn-gradient hover:text-white transition-all outline-none" 
               onClick={() => setShowModal(false)}
